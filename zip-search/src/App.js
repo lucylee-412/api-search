@@ -14,7 +14,7 @@ class App extends React.Component {
             cities: [],
             City: "No results",
             State: "",
-            errorMessage: "No results",
+            errorMessage: "",
         };
 
         this.handleChange = this.handleChange.bind(this);

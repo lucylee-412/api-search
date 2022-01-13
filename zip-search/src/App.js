@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.css'
 
 // Zip code validation check
 function isZipCode(zip) {
@@ -68,18 +69,23 @@ class App extends React.Component {
 
         return (
             <>
+            <div id = "navBar">
+                <h1>Zip Code Search</h1>
+            </div>
+            <div id = "zip">
                 <form onSubmit={this.handleSubmit}>
-                    <label>
+                    <label id = "text">
+                        <strong>
                         Zip Code:
+                        </strong>
                         <input type="text" value={this.state.zipcode} onChange={this.handleChange} />
                     </label>
-                    <input type="submit" value="Submit" />
+                    <input id = "submit" type="submit" value="Submit" />
                 </form>
-
-
-            <div>
+                </div>
+                <div id = "results">
                 {cities.map((city) => (
-                    <ul key = {city.LocationText}>
+                    <ul id = "card" key = {city.LocationText}>
                     <li>State: {city.State}</li>
                     <li>Location: {city.Lat}, {city.Long}</li>
                     <li>Population: {city.EstimatedPopulation}</li>

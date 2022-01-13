@@ -1,0 +1,21 @@
+#navBar {
+    background-color: rgb(65, 25, 25);
+    color: white;
+    padding: 70px 0;
+    text-align: center;
+    font-size: 25px;
+}
+#zip {
+    padding-top: 25px;
+    text-align: center;
+}
+
+#results {
+    text-align: center;
+    
+}
+
+#card {
+    list-style: none;
+}
+

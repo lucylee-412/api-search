@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.css';
 
 // Zip code validation check
 function isZipCode(zip) {
@@ -12,49 +13,61 @@ class App extends React.Component {
         this.state = {
             zipcode: "",
             cities: [],
-            errorMessage: null
+            City: "No results",
+            State: "",
+            errorMessage: "No results",
+
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({zipcode: event.target.value});
-    }
-
     handleSubmit(event) {
-        if (!isZipCode(this.state.zipcode)) {
-            alert(this.state.zipcode + ' is not a zip code.');
+        if (this.state.zipcode === "") {
+            alert('Please enter a zip code');
         }
 
-        event.preventDefault();
+        else if (!isZipCode(this.state.zipcode)) {
+            alert(this.state.zipcode + ' is not a zip code');
+        }
 
-        fetch(`http://ctp-zip-api.herokuapp.com/zip/${(this.state.zipcode)}`)
-            .then(async response => {
-                const data = await response.json();
+       
 
-                console.log(data)
-                console.log(data[0].LocationText)
+            event.preventDefault();
 
-                // check for error response
-                if (!response.ok) {
-                    // get error message from body or default to response statusText
-                    const error = (data && data.message) || response.statusText;
-                    return Promise.reject(error);
-                }
+            fetch(`http://ctp-zip-api.herokuapp.com/zip/${(this.state.zipcode)}`)
+                .then(async response => {
+                    const data = await response.json();
 
-                return data;
-            })
-            .then((data) => {
-                this.setState({
-                    cities: data
+                    console.log(data)
+                    console.log(data[0].LocationText)
+
+                    // check for error response
+                    if (!response.ok) {
+                        // get error message from body or default to response statusText
+                        const error = (data && data.message) || response.statusText;
+                        return Promise.reject(error);
+                    }
+
+                    return data;
+                })
+                .then((data) => {
+                    this.setState({
+                        cities: data,
+                        City: data[0].City,
+                        State: data[0].State,
+                        Lat: data[0].Lat,
+                        Long: data[0].Long,
+                        EstimatedPopulation: data[0].EstimatedPopulation,
+                        TotalWages: data[0].TotalWages
+                    });
+                })
+                .catch(error => {
+                    this.setState({ errorMessage: ''});
+                    
                 });
-            })
-            .catch(error => {
-                this.setState({ errorMessage: error.toString() });
-                console.error('There was an error!', error);
-            });
+        
     }
 
     /*
@@ -63,22 +76,37 @@ class App extends React.Component {
     }
     */
 
+    handleChange(event) {
+        this.setState({ zipcode: event.target.value });
+    }
+
     render() {
-        const {cities} = this.state;
+        const { cities } = this.state;
 
         return (
-            <>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Zip Code:
-                        <input type="text" value={this.state.zipcode} onChange={this.handleChange} />
-                    </label>
-                    <input type="submit" value="Submit" />
-                </form>
 
+            <div className='App'>
+                <div className='input-base'>
+                    <h1>Zip Code Search</h1>
+                    <div id='search-field'>
+                        <form onSubmit={this.handleSubmit}>
+                            <label id="zipcode" name="zipcode">
+                                Zip Code:
+                                <input
+                                    type="text"
+                                    value={this.state.zipcode}
+                                    placeholder="ex. 11206"
+                                    onChange={this.handleChange}
+                                />
+                            </label>
+                            <span></span>
+                            <button type="submit" value="Submit">Submit </button>
+                        </form>
+                    </div>
+                </div>
 
-            <div>
                 {cities.map((city) => (
+<<<<<<< HEAD
                     <ul key = {city.LocationText}>
                     <li>State: {city.State}</li>
                     <li>Location: {city.Lat}, {city.Long}</li>
@@ -86,8 +114,22 @@ class App extends React.Component {
                     <li>Total Wages: {city.TotalWages}</li>
                     </ul>
                 ))}
+=======
+                    <div className='container'>
+                        <div>{this.setState.errorMessage}</div>
+                        <div className='container-top'>{this.state.City}, {this.state.State}</div>
+                        <ul key={city.LocationText}>
+                            <li className='label'>State: {city.State}</li>
+                            <li className='label'>Location: {city.Lat}, {city.Long}</li>
+                            <li className='label'>Population: {city.EstimatedPopulation}</li>
+                            <li className='label'>Total Wages: {city.TotalWages}</li>
+                        </ul>
+                    </div>
+                ))}
+
+>>>>>>> bryant
             </div>
-            </>
+
         );
     }
 }

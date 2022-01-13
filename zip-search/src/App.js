@@ -30,44 +30,40 @@ class App extends React.Component {
             alert(this.state.zipcode + ' is not a zip code');
         }
 
-            event.preventDefault();
+        event.preventDefault();
 
-            fetch(`http://ctp-zip-api.herokuapp.com/zip/${(this.state.zipcode)}`)
-                .then(async response => {
-                    const data = await response.json();
+        fetch(`http://ctp-zip-api.herokuapp.com/zip/${(this.state.zipcode)}`)
+            .then(async response => {
+                const data = await response.json();
 
-                    console.log(data)
-                    console.log(data[0].LocationText)
+                if (!response.ok) {
+                    // Retrieve HTTP Error (404)
+                    const error = response.statusText;
+                    return Promise.reject(error);
+                }
 
-                    // check for error response
-                    if (!response.ok) {
-                        // get error message from body or default to response statusText
-                        const error = (data && data.message) || response.statusText;
-                        return Promise.reject(error);
-                    }
-
-                    return data;
-                })
-                .then((data) => {
-                    this.setState({
-                        cities: data,
-                        City: data[0].City,
-                        State: data[0].State,
-                        Lat: data[0].Lat,
-                        Long: data[0].Long,
-                        EstimatedPopulation: data[0].EstimatedPopulation,
-                        TotalWages: data[0].TotalWages,
-                        errorMessage: ""
-                    });
-                })
-                .catch(error => {
-                    this.setState({ zipcode: "",
+                return data;
+            })
+            .then((data) => {
+                this.setState({
+                    cities: data,
+                    City: data[0].City,
+                    State: data[0].State,
+                    Lat: data[0].Lat,
+                    Long: data[0].Long,
+                    EstimatedPopulation: data[0].EstimatedPopulation,
+                    TotalWages: data[0].TotalWages,
+                    errorMessage: ""
+                });
+            })
+            .catch(error => {
+                this.setState({
+                    zipcode: "",
                     cities: [],
                     City: "No results",
                     State: "",
                     errorMessage: "No results"});
-                });
-        
+            });
     }
 
     /*

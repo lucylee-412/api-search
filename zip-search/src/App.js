@@ -56,7 +56,8 @@ class App extends React.Component {
                         Lat: data[0].Lat,
                         Long: data[0].Long,
                         EstimatedPopulation: data[0].EstimatedPopulation,
-                        TotalWages: data[0].TotalWages
+                        TotalWages: data[0].TotalWages,
+                        errorMessage: ""
                     });
                 })
                 .catch(error => {
@@ -102,6 +103,7 @@ class App extends React.Component {
                         </form>
                     </div>
                 </div>
+                <div>{this.state.errorMessage}</div>
                 {cities.map((city) => (
                     <div className='container'>
                         <div className='container-top'>{this.state.City}, {this.state.State}</div>

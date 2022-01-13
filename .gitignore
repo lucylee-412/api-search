@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 .DS_Store
 .idea
 =======
@@ -8,3 +9,6 @@
 =======
 .DS_Store
 >>>>>>> eddd913 (Added .DS_store to .gitignore file)
+=======
+.DS_Store
+>>>>>>> fb8635e5f9dc613c61f72202deb1939baafeb3af

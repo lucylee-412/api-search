@@ -24,12 +24,8 @@ class App extends React.Component {
     }
 
     handleSubmit(event) {
-        if (this.state.zipcode === "") {
+        if (this.state.zipcode === "" || (!isZipCode(this.state.zipcode))) {
             alert('Please enter a zip code');
-        }
-
-        else if (!isZipCode(this.state.zipcode)) {
-            alert(this.state.zipcode + ' is not a zip code');
         }
 
        

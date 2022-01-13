@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 .DS_Store
 .idea
+=======
+.DS_Store
+>>>>>>> 55b2fff (Added .DS_store to .gitignore file)

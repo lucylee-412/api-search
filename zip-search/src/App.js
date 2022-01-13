@@ -106,15 +106,6 @@ class App extends React.Component {
                 </div>
 
                 {cities.map((city) => (
-<<<<<<< HEAD
-                    <ul key = {city.LocationText}>
-                    <li>State: {city.State}</li>
-                    <li>Location: {city.Lat}, {city.Long}</li>
-                    <li>Population: {city.EstimatedPopulation}</li>
-                    <li>Total Wages: {city.TotalWages}</li>
-                    </ul>
-                ))}
-=======
                     <div className='container'>
                         <div>{this.setState.errorMessage}</div>
                         <div className='container-top'>{this.state.City}, {this.state.State}</div>
@@ -127,7 +118,6 @@ class App extends React.Component {
                     </div>
                 ))}
 
->>>>>>> bryant
             </div>
 
         );

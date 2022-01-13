@@ -99,15 +99,15 @@ class App extends React.Component {
                                 />
                             </label>
                             <span></span>
-                            <button type="submit" value="Submit">Submit </button>
+                            <button type="submit" value="Submit">Submit</button>
                         </form>
                     </div>
                 </div>
                 <div>{this.state.errorMessage}</div>
                 {cities.map((city) => (
-                    <div className='container'>
+                    <div className='container' key={city.LocationText}>
                         <div className='container-top'>{this.state.City}, {this.state.State}</div>
-                        <ul key={city.LocationText}>
+                        <ul>
                             <li className='label'>State: {city.State}</li>
                             <li className='label'>Location: {city.Lat}, {city.Long}</li>
                             <li className='label'>Population: {city.EstimatedPopulation}</li>

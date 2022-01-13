@@ -85,7 +85,7 @@ class App extends React.Component {
                     <li>Population: {city.EstimatedPopulation}</li>
                     <li>Total Wages: {city.TotalWages}</li>
                     </ul>
-            ))}
+                ))}
             </div>
             </>
         );

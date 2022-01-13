@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Zip code validation check
 function isZipCode(zip) {
     return /^\d{5}(-\d{4})?$/.test(zip);
 }
@@ -10,7 +11,7 @@ class App extends React.Component {
 
         this.state = {
             zipcode: "",
-            city: [],
+            cities: [],
             errorMessage: null
         };
 
@@ -34,6 +35,7 @@ class App extends React.Component {
                 const data = await response.json();
 
                 console.log(data)
+                console.log(data[0].LocationText)
 
                 // check for error response
                 if (!response.ok) {
@@ -41,6 +43,13 @@ class App extends React.Component {
                     const error = (data && data.message) || response.statusText;
                     return Promise.reject(error);
                 }
+
+                return data;
+            })
+            .then((data) => {
+                this.setState({
+                    cities: data
+                });
             })
             .catch(error => {
                 this.setState({ errorMessage: error.toString() });
@@ -55,6 +64,8 @@ class App extends React.Component {
     */
 
     render() {
+        const {cities} = this.state;
+
         return (
             <>
                 <form onSubmit={this.handleSubmit}>
@@ -64,6 +75,18 @@ class App extends React.Component {
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
+
+
+            <div>
+                {cities.map((city) => (
+                    <ul key = {city.LocationText}>
+                    <li>State: {city.State}</li>
+                    <li>Location: {city.Lat}, {city.Long}</li>
+                    <li>Population: {city.EstimatedPopulation}</li>
+                    <li>Total Wages: {city.TotalWages}</li>
+                    </ul>
+            ))}
+            </div>
             </>
         );
     }

@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/zip-api/static/css/main.92c988ba.css",
-    "main.js": "/zip-api/static/js/main.523a9390.js",
+    "main.js": "/zip-api/static/js/main.c300c881.js",
     "index.html": "/zip-api/index.html",
     "main.92c988ba.css.map": "/zip-api/static/css/main.92c988ba.css.map",
-    "main.523a9390.js.map": "/zip-api/static/js/main.523a9390.js.map"
+    "main.c300c881.js.map": "/zip-api/static/js/main.c300c881.js.map"
   },
   "entrypoints": [
     "static/css/main.92c988ba.css",
-    "static/js/main.523a9390.js"
+    "static/js/main.c300c881.js"
   ]
 }

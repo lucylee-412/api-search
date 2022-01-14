@@ -32,7 +32,8 @@ class App extends React.Component {
 
         event.preventDefault();
 
-        fetch(`http://ctp-zip-api.herokuapp.com/zip/${(this.state.zipcode)}`)
+        // Sends API through secure HTTPS proxy
+        fetch(`https://cors-anywhere.herokuapp.com/corsdemo/http://ctp-zip-api.herokuapp.com/zip/${(this.state.zipcode)}`)
             .then(async response => {
                 const data = await response.json();
 

@@ -32,7 +32,7 @@ class App extends React.Component {
 
         event.preventDefault();
 
-        fetch(`http://ctp-zip-api.herokuapp.com/zip/${(this.state.zipcode)}`)
+        fetch(`https://ctp-zip-api.herokuapp.com/zip/${(this.state.zipcode)}`)
             .then(async response => {
                 const data = await response.json();
 

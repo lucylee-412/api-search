@@ -1,11 +1,12 @@
 import React from 'react';
 import './index.css'
+
 // Zip code validation check
 function isZipCode(zip) {
     return /^\d{5}(-\d{4})?$/.test(zip);
 }
-
-function commafy( num ) {
+// https://stackoverflow.com/a/6786040
+function insertCommas(num) {
     let str = num.toString().split('.');
     if (str[0].length >= 5) {
         str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
@@ -30,6 +31,10 @@ class App extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({ zipcode: event.target.value });
     }
 
     handleSubmit(event) {
@@ -77,21 +82,10 @@ class App extends React.Component {
             });
     }
 
-    /*
-    componentDidMount() {
-        console.log(this.state.zipcode);
-    }
-    */
-
-    handleChange(event) {
-        this.setState({ zipcode: event.target.value });
-    }
-
     render() {
-        const { cities } = this.state;
+        const {cities} = this.state;
 
         return (
-
             <div className='App'>
                 <div className='input-base'>
                     <h1>Zip Code Search</h1>
@@ -114,12 +108,12 @@ class App extends React.Component {
                 <div>{this.state.errorMessage}</div>
                 {cities.map((city) => (
                     <div className='container' key={city.LocationText}>
-                        <div className='container-top'>{this.state.City}, {this.state.State}</div>
+                        <div className='container-top'>{city.City}, {city.State}</div>
                         <ul>
                             <li className='label'>State: {city.State}</li>
                             <li className='label'>Location: {city.Lat}, {city.Long}</li>
-                            <li className='label'>Population: {commafy(city.EstimatedPopulation)}</li>
-                            <li className='label'>Total Wages: {commafy(city.TotalWages)}</li>
+                            <li className='label'>Population: {insertCommas(city.EstimatedPopulation)}</li>
+                            <li className='label'>Total Wages: {insertCommas(city.TotalWages)}</li>
                         </ul>
                     </div>
                 ))}

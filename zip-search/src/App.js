@@ -5,6 +5,17 @@ function isZipCode(zip) {
     return /^\d{5}(-\d{4})?$/.test(zip);
 }
 
+function commafy( num ) {
+    let str = num.toString().split('.');
+    if (str[0].length >= 5) {
+        str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+    }
+    if (str[1] && str[1].length >= 5) {
+        str[1] = str[1].replace(/(\d{3})/g, '$1 ');
+    }
+    return str.join('.');
+}
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -54,7 +65,7 @@ class App extends React.Component {
                     EstimatedPopulation: data[0].EstimatedPopulation,
                     TotalWages: data[0].TotalWages,
                     errorMessage: ""
-                });
+                })
             })
             .catch(error => {
                 this.setState({
@@ -78,6 +89,7 @@ class App extends React.Component {
 
     render() {
         const { cities } = this.state;
+
         return (
 
             <div className='App'>
@@ -106,8 +118,8 @@ class App extends React.Component {
                         <ul>
                             <li className='label'>State: {city.State}</li>
                             <li className='label'>Location: {city.Lat}, {city.Long}</li>
-                            <li className='label'>Population: {city.EstimatedPopulation}</li>
-                            <li className='label'>Total Wages: {city.TotalWages}</li>
+                            <li className='label'>Population: {commafy(city.EstimatedPopulation)}</li>
+                            <li className='label'>Total Wages: {commafy(city.TotalWages)}</li>
                         </ul>
                     </div>
                 ))}

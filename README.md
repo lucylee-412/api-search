@@ -17,7 +17,7 @@ This app is closely related to the app found at the [city-api](https://github.co
 *January 14, 2022:*
 
 * Created a function to insert commas into the Population and Wages fields for readability.
-* Thanks to TA Abi for sharing helpful links, I (Lucy) was able to deploy our app to GitHub Pages.
+* Thanks to TA Abi for sharing helpful links, we were able to deploy our app to GitHub Pages.
 
 *January 13, 2022:*  
 

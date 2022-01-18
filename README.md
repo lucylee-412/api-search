@@ -31,5 +31,5 @@ This app is closely related to the app found at the [city-api](https://github.co
 
 * This was our first time working with React.js.
 I (Lucy) closely followed the React.js documentation to create the form and set the state of the zipcode, which was appended to the end of the URL.
-[The demo code provided by Jason Watmore's](https://stackblitz.com/edit/react-http-get-request-examples-fetch?file=App%2FApp.jsx) was very helpful with setting up the error handling for the promise.
+[The demo code provided by Jason Watmore](https://stackblitz.com/edit/react-http-get-request-examples-fetch?file=App%2FApp.jsx) was very helpful with setting up the error handling for the promise.
 TA Victor advised that React hooks would be easier to use in future React.js assignments.
